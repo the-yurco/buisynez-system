@@ -1,83 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-type Props = {};
+// Define the UserInput component with onChange and userInput props
+interface UserInputProps {
+	onChange: (inputIdentifier: string, newValue: string) => void;
+	userInput: any; // Update with a more specific type if possible
+}
 
-const UserInput = (props: Props) => {
-	const [userInput, setUserInput] = useState({
-		initialInvestment: 10000,
-		annualInvestment: 1200,
-		expectedReturn: 6,
-		duration: 10
-	});
-
-	const handleChange = ({ inputIdentifier, newValue }: any) => {
-		setUserInput((prevUserInput) => {
-			return {
-				...prevUserInput,
-				[inputIdentifier]: newValue
-			};
-		});
-	};
-
+const UserInput: React.FC<UserInputProps> = ({ onChange, userInput }) => {
 	return (
+		// Render the user input section with input fields for initial investment, annual investment, expected return, and duration
 		<section id="user-input">
 			<div className="input-group">
 				<p>
-					<label htmlFor="">Initial Investment</label>
+					<label>Initial Investment</label>
+					{/* Input field for initial investment with value and onChange handlers */}
 					<input
 						type="number"
 						required
 						value={userInput.initialInvestment}
-						onChange={(e) =>
-							handleChange({
-								inputIdentifier: 'initialInvestment',
-								newValue: e.target.value
-							})
+						onChange={(event) =>
+							onChange('initialInvestment', event.target.value)
 						}
 					/>
 				</p>
 				<p>
-					<label htmlFor="">Annual Investment</label>
+					<label>Annual Investment</label>
+					{/* Input field for annual investment with value and onChange handlers */}
 					<input
 						type="number"
 						required
 						value={userInput.annualInvestment}
-						onChange={(e) =>
-							handleChange({
-								inputIdentifier: 'annualInvestment',
-								newValue: e.target.value
-							})
+						onChange={(event) =>
+							onChange('annualInvestment', event.target.value)
 						}
 					/>
 				</p>
 			</div>
 			<div className="input-group">
 				<p>
-					<label htmlFor="">Expected Return</label>
+					<label>Expected Return</label>
+					{/* Input field for expected return with value and onChange handlers */}
 					<input
 						type="number"
 						required
 						value={userInput.expectedReturn}
-						onChange={(e) =>
-							handleChange({
-								inputIdentifier: 'expectedReturn',
-								newValue: e.target.value
-							})
-						}
+						onChange={(event) => onChange('expectedReturn', event.target.value)}
 					/>
 				</p>
 				<p>
-					<label htmlFor="">Duration</label>
+					<label>Duration</label>
+					{/* Input field for duration with value and onChange handlers */}
 					<input
 						type="number"
 						required
 						value={userInput.duration}
-						onChange={(e) =>
-							handleChange({
-								inputIdentifier: 'duration',
-								newValue: e.target.value
-							})
-						}
+						onChange={(event) => onChange('duration', event.target.value)}
 					/>
 				</p>
 			</div>

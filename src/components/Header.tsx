@@ -1,12 +1,10 @@
 import React from 'react';
-import IMG_HEADER from '../assets/header.png';
+import logo from '../assets/header.png';
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header: React.FC = () => {
 	return (
 		<header id="header">
-			<img src={IMG_HEADER} alt="Logo showing header image" />
+			<img src={logo} alt="Logo showing a money bag" />
 			<h1>Investment Calculator</h1>
 		</header>
 	);
